@@ -11,8 +11,9 @@ Create animation that improves the reader's understanding of a specific passage.
 
 1. Read [references/narrative-patterns.md](references/narrative-patterns.md) before choosing a visual narrative or making a storyboard.
 2. Read [references/smil-wechat.md](references/smil-wechat.md) before writing SVG for WeChat or validating SMIL timing.
-3. Run `python scripts/validate_svg.py <file.svg>` for every generated SVG.
-4. Use [assets/parallel-tasks-example.svg](assets/parallel-tasks-example.svg) only as one worked example of timing and structure, never as the default output template.
+3. Run `python scripts/validate_svg.py <all figures of the article>` for every generated SVG. Pass all figures that will share one article in a single call so cross-figure id collisions are caught.
+4. Run `python scripts/render_frames.py <figures> --out frames` when a browser is available, and look at every contact sheet.
+5. Use [assets/parallel-tasks-example.svg](assets/parallel-tasks-example.svg) only as one worked example of timing and structure, never as the default output template.
 
 ## Workflow
 
@@ -50,7 +51,7 @@ Reader question:
 Single takeaway:
 Motion-worthy relationship:
 Literal depiction or analogy:
-Static fallback state:
+Static fallback state (= the t=0 frame):
 ```
 
 Keep one primary takeaway per SVG. If there are several unrelated takeaways, split them into separate figures or simplify the passage first.
@@ -70,6 +71,8 @@ Select a pattern because it matches the source relationship, not because it look
 
 Consult `references/narrative-patterns.md` for variations and failure modes. Combine patterns only when the article explicitly combines the relationships.
 
+When an article gets several figures, decide the shared frame once (canvas width, palette, kicker/title/caption positions, type sizes, easing set) and reuse it, so the figures read as one series. The frame is shared; the composition inside it is designed per passage.
+
 ### 5. Storyboard before writing SVG
 
 Define 3–7 beats and a short loop, normally 4–8 seconds for a small WeChat figure:
@@ -80,7 +83,9 @@ Define 3–7 beats and a short loop, normally 4–8 seconds for a small WeChat f
 4. Hold long enough to read the result.
 5. Reset or return to the initial state.
 
-Specify what moves, what remains stable, when text appears, and which state remains visible if SMIL is unsupported. Prefer short loops because WeChat inline SMIL commonly starts with page load rather than when the reader reaches the figure.
+Make **t=0 the complete, readable state**: paused previews, reduced-motion views, screenshots and clients without SMIL all show the first frame. Start each `values` list with the complete state, reset quickly, then replay the beats. If the takeaway genuinely needs an element hidden at t=0 (for example a timeline that must start empty), rotate the loop so it starts at a readable moment instead, or mark that animation with `data-validate-allow="blank-first-frame"` and say why in the delivery note.
+
+Specify what moves, what remains stable, when text appears, and which state remains visible if SMIL is unsupported. Prefer short loops because WeChat inline SMIL commonly starts with page load rather than when the reader reaches the figure. Make narrative loop durations divide the main loop (6s with 3s or 2s, not 6s with 5s) so beats stay aligned; short ambient loops such as a 0.9s loader may drift.
 
 Do not make essential text visible for only a brief instant. Do not rely on click, hover, scroll, or user-controlled playback unless the target environment is explicitly known to support it.
 
@@ -89,10 +94,11 @@ Do not make essential text visible for only a brief instant. Do not rely on clic
 For conservative WeChat output:
 
 - Use inline SVG with a `viewBox`; start with width `750` and choose height from the content rather than forcing a template ratio.
-- Use `<title>` and `<desc>` to state the takeaway.
-- Prefer `<animate>` for opacity and `<animateTransform>` for translation and scale.
+- Size text for a phone: a 750-wide figure is shown at about 0.46×. Use at least 22 for body labels, 20 for secondary notes, 26–28 for captions and 36–40 for the figure title (all in 750-wide units).
+- Use `<title>` and `<desc>` to state the takeaway, and prefix every `id` with the figure's name (`f3-title`, `f3-desc`), because all figures of an article end up in one HTML document.
+- Prefer `<animate>` for opacity and `<animateTransform>` for translation and scale. Animate only `opacity`, `transform`, `fill`, `stroke` or geometry attributes; other attributes are stripped by common WeChat HTML import tools.
 - Keep objects visually stable across states so readers can track identity.
-- Wrap animated transforms in nested groups when a static transform must also be preserved.
+- Put a static position on an outer `<g>` and the `animateTransform` on an inner `<g>`; the animation replaces the target's own `transform`.
 - Set initial attributes to a meaningful static fallback.
 - Use manual line breaks for text and check the narrowest intended viewport.
 - Avoid JavaScript, external assets, event-driven playback, and fragile effects listed in `references/smil-wechat.md`.
@@ -101,22 +107,30 @@ Write new geometry and timing appropriate to the article. Do not merely replace 
 
 ### 7. Verify logic, syntax, and rendering
 
-Run the validator and fix every error:
+Run the validator on all figures of the article together and fix every error:
 
 ```bash
-python scripts/validate_svg.py path/to/output.svg
+python scripts/validate_svg.py figures/*.svg
 ```
 
-Then verify:
+It checks XML, timing arrays, splines, the syntax of every animated value, transforms replaced by `animateTransform`, a hidden first frame, text below phone-readable size, ids that collide across figures, loop phase drift, and attributes that WeChat import tools strip. A clean result still says nothing about whether the figure explains anything.
+
+Then render the key moments:
+
+```bash
+python scripts/render_frames.py figures/*.svg --out frames
+```
+
+The script pauses each figure at every turning point of its main loop (and the midpoint of every transition), writes a labelled contact sheet per figure, and reports text that leaves the canvas. Open each sheet and verify:
 
 - The animation expresses the explanation contract.
 - Initial, middle, completion, and reset states are correct.
 - Parallel items actually start and finish at the intended times.
-- No text overlaps, clips, or becomes unreadable during motion.
-- The static fallback is understandable.
+- No text or icon overlaps, clips, or becomes unreadable during motion.
+- The t=0 frame is understandable on its own.
 - The loop does not flash or jump unintentionally.
 
-When a browser is available, inspect actual rendering and use `pauseAnimations()` plus `setCurrentTime(t)` to check keyframes. When no renderer is available, explicitly report that visual rendering was not verified; never claim a screenshot or browser test that did not occur.
+A value error that the validator cannot judge (a correct-looking number in the wrong place) only shows up in the frames, so do not skip this step when a browser is available. When no renderer is available, explicitly report that visual rendering was not verified; never claim a screenshot or browser test that did not occur.
 
 WeChat client behavior can vary. Treat browser validation as necessary but not sufficient; recommend a draft preview in the intended WeChat client for final publishing.
 
@@ -124,11 +138,11 @@ WeChat client behavior can vary. Treat browser validation as necessary but not s
 
 Provide:
 
-- The `.svg` file.
-- One or two sentences explaining why this motion pattern fits the passage.
+- The `.svg` files.
+- One or two sentences per figure explaining why this motion pattern fits the passage.
 - The loop duration and important completion timings when useful.
-- Instructions to insert the SVG inline rather than upload it as a static image.
-- Any remaining compatibility or visual-verification limitations.
+- How to insert the SVG inline rather than upload it as a static image (see "Inserting into WeChat" in `references/smil-wechat.md`).
+- Any remaining compatibility or visual-verification limitations, including any `data-validate-allow` exception and why it is needed.
 
 Do not create a web application, video, GIF, or editor unless the user separately requests one.
 

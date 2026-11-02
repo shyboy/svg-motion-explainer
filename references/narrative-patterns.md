@@ -8,6 +8,7 @@ Use this reference to translate an article's meaning into a visual narrative. Ch
 - Pattern guidance
 - Storyboard construction
 - Worked analysis
+- Figures as a series
 - Final narrative checks
 
 ## Selection table
@@ -75,7 +76,7 @@ Write beats in source terms before converting them to SVG attributes:
 ```text
 Takeaway: One sentence the figure must communicate.
 Persistent objects: Things the reader must track across time.
-Initial state: What is already true?
+Initial state: What is already true? (This is also the t=0 frame and the static fallback, so it must read on its own.)
 Trigger: What starts the meaningful change?
 Change: Which relationship, state, or direction changes?
 Result: What should the reader notice?
@@ -107,6 +108,16 @@ Fallback: All nodes and the final returned result remain understandable.
 
 Why this works: movement explains direction and responsibility. A looping cursor or fading cards would not explain the architecture as precisely.
 
+## Figures as a series
+
+When one article gets several figures, the reader should recognise them as one set and spend attention on what differs.
+
+- Decide the shared frame once: canvas width, background, kicker, title, divider and caption positions, type sizes, palette, and the easing set (for example entrance `0.16 1 0.3 1`, in-out `0.42 0 0.58 1`, hold `0 0 1 1`).
+- Use the caption line to state each figure's takeaway in words, so a reader who scrolls past the motion still gets it.
+- Choose each figure's pattern independently. A series of six parallel-task figures is a sign that the template, not the article, chose the narrative.
+- Give each figure its own loop length from its own storyboard; sharing the frame does not mean sharing the timing.
+- Prefix ids per figure (`f1-`, `f2-`, …).
+
 ## Final narrative checks
 
 - Can the takeaway be stated without mentioning the animation technique?
@@ -116,3 +127,4 @@ Why this works: movement explains direction and responsibility. A looping cursor
 - Can the reader track object identity throughout?
 - Is the result visible long enough to read?
 - If motion is removed, is a meaningful explanation lost? If not, use a static SVG or simplify the design.
+- Does the t=0 frame, on its own, still state the takeaway?
