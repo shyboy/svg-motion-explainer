@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  公众号 SVG SMIL 并行任务动效模板
+  1. 直接修改三组任务文字和交付时间。
+  2. 主循环为 6 秒；修改时长时需同步调整所有 dur 与 keyTimes。
+  3. 无 JavaScript、无外部图片、无 CSS 动画；请以 inline SVG 方式插入正文。
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 720" width="750" height="720"
+  font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" role="img" aria-labelledby="svgTitle svgDesc">
+  <title id="svgTitle">一句话，并行完成三项任务</title>
+  <desc id="svgDesc">三项任务同时开始，分别加载，并按不同时间完成交付。</desc>
+
+  <rect x="0" y="0" width="750" height="720" rx="8" fill="#F6F1E7"/>
+  <text x="375" y="58" text-anchor="middle" font-size="17" fill="#92968F">PARALLEL TASKS · SVG SMIL</text>
+  <text x="375" y="112" text-anchor="middle" font-size="34" font-weight="700" fill="#242622">一句话，并行完成三项任务</text>
+  <line x1="70" y1="145" x2="680" y2="145" stroke="#D9D4C9"/>
+
+  <!-- 用户需求 -->
+  <rect x="170" y="175" width="510" height="82" rx="16" fill="#E4F2ED"/>
+  <text x="195" y="208" font-size="17" fill="#3F4641">请基于现有素材，同时完成海报、文案和清单。</text>
+  <text x="195" y="236" font-size="17" fill="#3F4641">三项互不影响，一起做。</text>
+
+  <!-- 回复气泡：淡入并上移 10 px -->
+  <g>
+    <animate attributeName="opacity" values="1;0;0;1;1" keyTimes="0;0.1;0.1583;0.2167;1"
+      calcMode="spline" keySplines="0.42 0 0.58 1;0 0 1 1;0.16 1 0.3 1;0 0 1 1"
+      dur="6s" begin="0s" repeatCount="indefinite"/>
+    <animateTransform attributeName="transform" type="translate" values="0 0;0 10;0 10;0 0;0 0"
+      keyTimes="0;0.1;0.1583;0.2333;1" calcMode="spline"
+      keySplines="0.42 0 0.58 1;0 0 1 1;0.16 1 0.3 1;0 0 1 1"
+      dur="6s" begin="0s" repeatCount="indefinite"/>
+    <rect x="90" y="282" width="500" height="65" rx="16" fill="#ECEAE4"/>
+    <text x="112" y="310" font-size="16" fill="#4A4E49">收到，我会拆成三条并行任务，</text>
+    <text x="112" y="333" font-size="16" fill="#4A4E49">完成后分别交付。</text>
+  </g>
+
+  <!-- 并行状态标签 -->
+  <g>
+    <animate attributeName="opacity" values="1;0;0;1;1" keyTimes="0;0.1;0.2583;0.2917;1"
+      calcMode="spline" keySplines="0.42 0 0.58 1;0 0 1 1;0.16 1 0.3 1;0 0 1 1"
+      dur="6s" begin="0s" repeatCount="indefinite"/>
+    <rect x="500" y="363" width="150" height="34" rx="17" fill="#CF4436"/>
+    <text x="575" y="386" text-anchor="middle" font-size="16" font-weight="700" fill="#FFFFFF">三条线同时开工</text>
+  </g>
+
+  
+  <!-- 任务卡：修改文字与交付时间；完成时机由对应 keyTimes 控制 -->
+  <g transform="translate(110 405)">
+    <g>
+      <animate attributeName="opacity" values="1;0;0;1;1" keyTimes="0;0.1;0.225;0.2833;1"
+        calcMode="spline" keySplines="0.42 0 0.58 1;0 0 1 1;0.16 1 0.3 1;0 0 1 1"
+        dur="6s" begin="0s" repeatCount="indefinite"/>
+      <animateTransform attributeName="transform" type="translate" values="0 0;0 8;0 8;0 0;0 0"
+        keyTimes="0;0.1;0.225;0.3;1" calcMode="spline"
+        keySplines="0.42 0 0.58 1;0 0 1 1;0.16 1 0.3 1;0 0 1 1"
+        dur="6s" begin="0s" repeatCount="indefinite"/>
+
+      <rect x="0" y="0" width="470" height="58" rx="29" fill="#FFFFFF" stroke="#E5E1D8"/>
+      <path d="M20 20h12l4 4h14v17H20z" fill="none" stroke="#30322F" stroke-width="2"/>
+      <path d="M20 27h30" stroke="#30322F" stroke-width="2"/>
+      <text x="64" y="37" font-size="18" fill="#30322F">制作活动海报</text>
+
+      <!-- 完成前的 8 点加载器 -->
+      <g transform="translate(535 29)"><g opacity="0"><animate attributeName="opacity" values="0;0;0;1;1;0;0" keyTimes="0;0.1;0.2233;0.225;0.65;0.6517;1" calcMode="spline" keySplines="0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1" dur="6s" begin="0s" repeatCount="indefinite"/><circle cx="0" cy="-12" r="2.2" fill="#8E938D" opacity="0.25"><animate attributeName="opacity" values="1;0.25;0.25;0.25;0.25;0.25;0.25;0.25;1" keyTimes="0;0.125;0.25;0.375;0.5;0.625;0.75;0.875;1" calcMode="discrete" dur="0.9s" begin="0s" repeatCount="indefinite"/></circle><circle cx="8.4853" cy="-8.4853" r="2.2" fill="#8E938D" opacity="0.25"><animate attributeName="opacity" values="0.25;1;0.25;0.25;0.25;0.25;0.25;0.25;0.25" keyTimes="0;0.125;0.25;0.375;0.5;0.625;0.75;0.875;1" calcMode="discrete" dur="0.9s" begin="0s" repeatCount="indefinite"/></circle><circle cx="12" cy="0" r="2.2" fill="#8E938D" opacity="0.25"><animate attributeName="opacity" values="0.25;0.25;1;0.25;0.25;0.25;0.25;0.25;0.25" keyTimes="0;0.125;0.25;0.375;0.5;0.625;0.75;0.875;1" calcMode="discrete" dur="0.9s" begin="0s" repeatCount="indefinite"/></circle><circle cx="8.4853" cy="8.4853" r="2.2" fill="#8E938D" opacity="0.25"><animate attributeName="opacity" values="0.25;0.25;0.25;1;0.25;0.25;0.25;0.25;0.25" keyTimes="0;0.125;0.25;0.375;0.5;0.625;0.75;0.875;1" calcMode="discrete" dur="0.9s" begin="0s" repeatCount="indefinite"/></circle><circle cx="0" cy="12" r="2.2" fill="#8E938D" opacity="0.25"><animate attributeName="opacity" values="0.25;0.25;0.25;0.25;1;0.25;0.25;0.25;0.25" keyTimes="0;0.125;0.25;0.375;0.5;0.625;0.75;0.875;1" calcMode="discrete" dur="0.9s" begin="0s" repeatCount="indefinite"/></circle><circle cx="-8.4853" cy="8.4853" r="2.2" fill="#8E938D" opacity="0.25"><animate attributeName="opacity" values="0.25;0.25;0.25;0.25;0.25;1;0.25;0.25;0.25" keyTimes="0;0.125;0.25;0.375;0.5;0.625;0.75;0.875;1" calcMode="discrete" dur="0.9s" begin="0s" repeatCount="indefinite"/></circle><circle cx="-12" cy="0" r="2.2" fill="#8E938D" opacity="0.25"><animate attributeName="opacity" values="0.25;0.25;0.25;0.25;0.25;0.25;1;0.25;0.25" keyTimes="0;0.125;0.25;0.375;0.5;0.625;0.75;0.875;1" calcMode="discrete" dur="0.9s" begin="0s" repeatCount="indefinite"/></circle><circle cx="-8.4853" cy="-8.4853" r="2.2" fill="#8E938D" opacity="0.25"><animate attributeName="opacity" values="0.25;0.25;0.25;0.25;0.25;0.25;0.25;1;0.25" keyTimes="0;0.125;0.25;0.375;0.5;0.625;0.75;0.875;1" calcMode="discrete" dur="0.9s" begin="0s" repeatCount="indefinite"/></circle></g></g>
+
+      <!-- 完成后的绿色勾和交付时间 -->
+      <g><animate attributeName="opacity" values="1;0;0;1;1" keyTimes="0;0.1;0.65;0.6517;1" calcMode="spline" keySplines="0.42 0 0.58 1;0 0 1 1;0.16 1 0.3 1;0 0 1 1" dur="6s" begin="0s" repeatCount="indefinite"/>
+        <g transform="translate(535 29)">
+          <g>
+            <animateTransform attributeName="transform" type="scale"
+              values="1;1;1;1.4;0.94;1;1" keyTimes="0;0.1;0.65;0.6733;0.7067;0.7417;1"
+              calcMode="spline" keySplines="0.16 1 0.3 1;0.16 1 0.3 1;0.16 1 0.3 1;0.16 1 0.3 1;0.16 1 0.3 1;0.16 1 0.3 1"
+              dur="6s" begin="0s" repeatCount="indefinite"/>
+            <circle cx="0" cy="0" r="11" fill="#35A96B"/>
+            <path d="M-5 0l3.2 3.4L5-4" fill="none" stroke="#FFFFFF" stroke-width="2.4"
+              stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+        </g>
+        <text x="490" y="35" font-size="15" fill="#92968F">17:01 交付</text>
+      </g>
+    </g>
+  </g>
+  
+  <!-- 任务卡：修改文字与交付时间；完成时机由对应 keyTimes 控制 -->
+  <g transform="translate(110 480)">
+    <g>
+      <animate attributeName="opacity" values="1;0;0;1;1" keyTimes="0;0.1;0.225;0.2833;1"
+        calcMode="spline" keySplines="0.42 0 0.58 1;0 0 1 1;0.16 1 0.3 1;0 0 1 1"
+        dur="6s" begin="0s" repeatCount="indefinite"/>
+      <animateTransform attributeName="transform" type="translate" values="0 0;0 8;0 8;0 0;0 0"
+        keyTimes="0;0.1;0.225;0.3;1" calcMode="spline"
+        keySplines="0.42 0 0.58 1;0 0 1 1;0.16 1 0.3 1;0 0 1 1"
+        dur="6s" begin="0s" repeatCount="indefinite"/>
+
+      <rect x="0" y="0" width="470" height="58" rx="29" fill="#FFFFFF" stroke="#E5E1D8"/>
+      <path d="M20 20h12l4 4h14v17H20z" fill="none" stroke="#30322F" stroke-width="2"/>
+      <path d="M20 27h30" stroke="#30322F" stroke-width="2"/>
+      <text x="64" y="37" font-size="18" fill="#30322F">撰写分享文案</text>
+
+      <!-- 完成前的 8 点加载器 -->
+      <g transform="translate(535 29)"><g opacity="0"><animate attributeName="opacity" values="0;0;0;1;1;0;0" keyTimes="0;0.1;0.2233;0.225;0.4167;0.4184;1" calcMode="spline" keySplines="0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1" dur="6s" begin="0s" repeatCount="indefinite"/><circle cx="0" cy="-12" r="2.2" fill="#8E938D" opacity="0.25"><animate attributeName="opacity" values="1;0.25;0.25;0.25;0.25;0.25;0.25;0.25;1" keyTimes="0;0.125;0.25;0.375;0.5;0.625;0.75;0.875;1" calcMode="discrete" dur="0.9s" begin="0s" repeatCount="indefinite"/></circle><circle cx="8.4853" cy="-8.4853" r="2.2" fill="#8E938D" opacity="0.25"><animate attributeName="opacity" values="0.25;1;0.25;0.25;0.25;0.25;0.25;0.25;0.25" keyTimes="0;0.125;0.25;0.375;0.5;0.625;0.75;0.875;1" calcMode="discrete" dur="0.9s" begin="0s" repeatCount="indefinite"/></circle><circle cx="12" cy="0" r="2.2" fill="#8E938D" opacity="0.25"><animate attributeName="opacity" values="0.25;0.25;1;0.25;0.25;0.25;0.25;0.25;0.25" keyTimes="0;0.125;0.25;0.375;0.5;0.625;0.75;0.875;1" calcMode="discrete" dur="0.9s" begin="0s" repeatCount="indefinite"/></circle><circle cx="8.4853" cy="8.4853" r="2.2" fill="#8E938D" opacity="0.25"><animate attributeName="opacity" values="0.25;0.25;0.25;1;0.25;0.25;0.25;0.25;0.25" keyTimes="0;0.125;0.25;0.375;0.5;0.625;0.75;0.875;1" calcMode="discrete" dur="0.9s" begin="0s" repeatCount="indefinite"/></circle><circle cx="0" cy="12" r="2.2" fill="#8E938D" opacity="0.25"><animate attributeName="opacity" values="0.25;0.25;0.25;0.25;1;0.25;0.25;0.25;0.25" keyTimes="0;0.125;0.25;0.375;0.5;0.625;0.75;0.875;1" calcMode="discrete" dur="0.9s" begin="0s" repeatCount="indefinite"/></circle><circle cx="-8.4853" cy="8.4853" r="2.2" fill="#8E938D" opacity="0.25"><animate attributeName="opacity" values="0.25;0.25;0.25;0.25;0.25;1;0.25;0.25;0.25" keyTimes="0;0.125;0.25;0.375;0.5;0.625;0.75;0.875;1" calcMode="discrete" dur="0.9s" begin="0s" repeatCount="indefinite"/></circle><circle cx="-12" cy="0" r="2.2" fill="#8E938D" opacity="0.25"><animate attributeName="opacity" values="0.25;0.25;0.25;0.25;0.25;0.25;1;0.25;0.25" keyTimes="0;0.125;0.25;0.375;0.5;0.625;0.75;0.875;1" calcMode="discrete" dur="0.9s" begin="0s" repeatCount="indefinite"/></circle><circle cx="-8.4853" cy="-8.4853" r="2.2" fill="#8E938D" opacity="0.25"><animate attributeName="opacity" values="0.25;0.25;0.25;0.25;0.25;0.25;0.25;1;0.25" keyTimes="0;0.125;0.25;0.375;0.5;0.625;0.75;0.875;1" calcMode="discrete" dur="0.9s" begin="0s" repeatCount="indefinite"/></circle></g></g>
+
+      <!-- 完成后的绿色勾和交付时间 -->
+      <g><animate attributeName="opacity" values="1;0;0;1;1" keyTimes="0;0.1;0.4167;0.4184;1" calcMode="spline" keySplines="0.42 0 0.58 1;0 0 1 1;0.16 1 0.3 1;0 0 1 1" dur="6s" begin="0s" repeatCount="indefinite"/>
+        <g transform="translate(535 29)">
+          <g>
+            <animateTransform attributeName="transform" type="scale"
+              values="1;1;1;1.4;0.94;1;1" keyTimes="0;0.1;0.4167;0.44;0.4734;0.5084;1"
+              calcMode="spline" keySplines="0.16 1 0.3 1;0.16 1 0.3 1;0.16 1 0.3 1;0.16 1 0.3 1;0.16 1 0.3 1;0.16 1 0.3 1"
+              dur="6s" begin="0s" repeatCount="indefinite"/>
+            <circle cx="0" cy="0" r="11" fill="#35A96B"/>
+            <path d="M-5 0l3.2 3.4L5-4" fill="none" stroke="#FFFFFF" stroke-width="2.4"
+              stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+        </g>
+        <text x="490" y="35" font-size="15" fill="#92968F">16:57 交付</text>
+      </g>
+    </g>
+  </g>
+  
+  <!-- 任务卡：修改文字与交付时间；完成时机由对应 keyTimes 控制 -->
+  <g transform="translate(110 555)">
+    <g>
+      <animate attributeName="opacity" values="1;0;0;1;1" keyTimes="0;0.1;0.225;0.2833;1"
+        calcMode="spline" keySplines="0.42 0 0.58 1;0 0 1 1;0.16 1 0.3 1;0 0 1 1"
+        dur="6s" begin="0s" repeatCount="indefinite"/>
+      <animateTransform attributeName="transform" type="translate" values="0 0;0 8;0 8;0 0;0 0"
+        keyTimes="0;0.1;0.225;0.3;1" calcMode="spline"
+        keySplines="0.42 0 0.58 1;0 0 1 1;0.16 1 0.3 1;0 0 1 1"
+        dur="6s" begin="0s" repeatCount="indefinite"/>
+
+      <rect x="0" y="0" width="470" height="58" rx="29" fill="#FFFFFF" stroke="#E5E1D8"/>
+      <path d="M20 20h12l4 4h14v17H20z" fill="none" stroke="#30322F" stroke-width="2"/>
+      <path d="M20 27h30" stroke="#30322F" stroke-width="2"/>
+      <text x="64" y="37" font-size="18" fill="#30322F">生成特价清单</text>
+
+      <!-- 完成前的 8 点加载器 -->
+      <g transform="translate(535 29)"><g opacity="0"><animate attributeName="opacity" values="0;0;0;1;1;0;0" keyTimes="0;0.1;0.2233;0.225;0.5;0.5017;1" calcMode="spline" keySplines="0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1" dur="6s" begin="0s" repeatCount="indefinite"/><circle cx="0" cy="-12" r="2.2" fill="#8E938D" opacity="0.25"><animate attributeName="opacity" values="1;0.25;0.25;0.25;0.25;0.25;0.25;0.25;1" keyTimes="0;0.125;0.25;0.375;0.5;0.625;0.75;0.875;1" calcMode="discrete" dur="0.9s" begin="0s" repeatCount="indefinite"/></circle><circle cx="8.4853" cy="-8.4853" r="2.2" fill="#8E938D" opacity="0.25"><animate attributeName="opacity" values="0.25;1;0.25;0.25;0.25;0.25;0.25;0.25;0.25" keyTimes="0;0.125;0.25;0.375;0.5;0.625;0.75;0.875;1" calcMode="discrete" dur="0.9s" begin="0s" repeatCount="indefinite"/></circle><circle cx="12" cy="0" r="2.2" fill="#8E938D" opacity="0.25"><animate attributeName="opacity" values="0.25;0.25;1;0.25;0.25;0.25;0.25;0.25;0.25" keyTimes="0;0.125;0.25;0.375;0.5;0.625;0.75;0.875;1" calcMode="discrete" dur="0.9s" begin="0s" repeatCount="indefinite"/></circle><circle cx="8.4853" cy="8.4853" r="2.2" fill="#8E938D" opacity="0.25"><animate attributeName="opacity" values="0.25;0.25;0.25;1;0.25;0.25;0.25;0.25;0.25" keyTimes="0;0.125;0.25;0.375;0.5;0.625;0.75;0.875;1" calcMode="discrete" dur="0.9s" begin="0s" repeatCount="indefinite"/></circle><circle cx="0" cy="12" r="2.2" fill="#8E938D" opacity="0.25"><animate attributeName="opacity" values="0.25;0.25;0.25;0.25;1;0.25;0.25;0.25;0.25" keyTimes="0;0.125;0.25;0.375;0.5;0.625;0.75;0.875;1" calcMode="discrete" dur="0.9s" begin="0s" repeatCount="indefinite"/></circle><circle cx="-8.4853" cy="8.4853" r="2.2" fill="#8E938D" opacity="0.25"><animate attributeName="opacity" values="0.25;0.25;0.25;0.25;0.25;1;0.25;0.25;0.25" keyTimes="0;0.125;0.25;0.375;0.5;0.625;0.75;0.875;1" calcMode="discrete" dur="0.9s" begin="0s" repeatCount="indefinite"/></circle><circle cx="-12" cy="0" r="2.2" fill="#8E938D" opacity="0.25"><animate attributeName="opacity" values="0.25;0.25;0.25;0.25;0.25;0.25;1;0.25;0.25" keyTimes="0;0.125;0.25;0.375;0.5;0.625;0.75;0.875;1" calcMode="discrete" dur="0.9s" begin="0s" repeatCount="indefinite"/></circle><circle cx="-8.4853" cy="-8.4853" r="2.2" fill="#8E938D" opacity="0.25"><animate attributeName="opacity" values="0.25;0.25;0.25;0.25;0.25;0.25;0.25;1;0.25" keyTimes="0;0.125;0.25;0.375;0.5;0.625;0.75;0.875;1" calcMode="discrete" dur="0.9s" begin="0s" repeatCount="indefinite"/></circle></g></g>
+
+      <!-- 完成后的绿色勾和交付时间 -->
+      <g><animate attributeName="opacity" values="1;0;0;1;1" keyTimes="0;0.1;0.5;0.5017;1" calcMode="spline" keySplines="0.42 0 0.58 1;0 0 1 1;0.16 1 0.3 1;0 0 1 1" dur="6s" begin="0s" repeatCount="indefinite"/>
+        <g transform="translate(535 29)">
+          <g>
+            <animateTransform attributeName="transform" type="scale"
+              values="1;1;1;1.4;0.94;1;1" keyTimes="0;0.1;0.5;0.5233;0.5567;0.5917;1"
+              calcMode="spline" keySplines="0.16 1 0.3 1;0.16 1 0.3 1;0.16 1 0.3 1;0.16 1 0.3 1;0.16 1 0.3 1;0.16 1 0.3 1"
+              dur="6s" begin="0s" repeatCount="indefinite"/>
+            <circle cx="0" cy="0" r="11" fill="#35A96B"/>
+            <path d="M-5 0l3.2 3.4L5-4" fill="none" stroke="#FFFFFF" stroke-width="2.4"
+              stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+        </g>
+        <text x="490" y="35" font-size="15" fill="#92968F">16:58 交付</text>
+      </g>
+    </g>
+  </g>
+
+  <line x1="70" y1="640" x2="680" y2="640" stroke="#D9D4C9"/>
+  <text x="375" y="680" text-anchor="middle" font-size="21" font-weight="700" fill="#30322F">三条线同时开工，先做完的先交付</text>
+</svg>
